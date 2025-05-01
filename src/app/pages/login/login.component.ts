@@ -40,10 +40,12 @@ export class LoginComponent {
       this.authService.httpLogin(this.loginForm.value).subscribe({
         next: (res: any) => {
           alert('Login Successfully');
-
-          const token = res.data;
-          localStorage.setItem('authToken', token);
-          console.log(token);
+          console.log(res.data)
+          // const token = res.data;
+          localStorage.setItem('user_id',res.data._id)
+          localStorage.setItem('authToken', res.data.token);
+          this.authService.isLoggedIn$.next(true)
+          console.log(res.data.token);
           this.router.navigate(['home']);
           this.loginForm.reset();
         },
