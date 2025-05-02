@@ -41,7 +41,7 @@ export class LoginComponent {
         next: (res: any) => {
           alert('Login Successfully');
           console.log(res.data)
-          // const token = res.data;
+          const token = res.data;
           localStorage.setItem('user_id',res.data._id)
           localStorage.setItem('authToken', res.data.token);
           this.authService.isLoggedIn$.next(true)
